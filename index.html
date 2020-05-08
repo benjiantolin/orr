@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="authors" content="Benji Antolin">
+  <title>ORR Workforce Survey Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+  <link href="css/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/simplebar.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <script src="js/d3.js"></script>
+  <script src="js/c3.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="js/chroma.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/simplebar.min.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="loader"></div>
+    <div id="info" data-simplebar data-simplebar-auto-hide="true">
+
+      <div id="deck-5" class="card-deck counts">
+        <div class="card">
+          <div id="title2" style="font-size:30px"><img src="img\ORR.png"></div>
+        </div>
+      </div>
+      <div id="deck-5" class="card-deck counts">
+        <div class="card">
+          <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <div id="wrapper" data-simplebar data-simplebar-auto-hide="true">
+      <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <div id="title" style="font-size:34px"><i class="fas fa-tachometer-alt"></i> Workforce Survey Dashboard
+            <span><a href="https://www.facebook.com/OutdoorRecreationRoundtable/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
+            <span><a href="https://twitter.com/ORRoundtable" target="_blank"><i class="fab fa-twitter-square"></i></a></span>
+            <span><a data-toggle="modal" data-target="#resourcewindow"><i class="far fa-question-circle"></i></a></span>
+            <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+            Has the global coronavirus pandemic disrupted your industry's supply chain and/or distribution of product?
+            <div>
+          </center>
+          <div id="supply-chart"></div>
+        </div>
+      </div>
+
+      <div id="deck-2" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">What percentage of your association's employees have been furloughed or laid off?</div>
+          </center>
+          <div id="alaid-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">What percentage of your members' employees have been furloughed or laid off?</div>
+          </center>
+          <div id="mlaid-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">How have sales and revenue changed for your association AND for your members?</div>
+          </center>
+          <div id="total-chart"></div>
+        </div>
+      </div>
+
+
+      <div id="deck-4" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">How have budgets and expenses changed for your association AND for your members?</div>
+          </center>
+          <div id="budget-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">How have employment needs changed for your association AND for your members?</div>
+          </center>
+          <div id="employ-chart"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>
+              This interactive web dashboard enables users to track the Outdoor Recreation Roundtable workforce survey.The supporting
+              dataset is collected from Qualtrics and then plotted onto this web application.
+            </p>
+
+            <h5>Update Procedure</h5>
+            To be determined...
+<p>
+              * If you have any questions or concerns, please contact <a href="mailto:benjiantolin@gmail.com">Benji Antolin</a>.
+            </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="resourcewindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Title</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p><a href="" target="_blank">Item</a></p>
+            <p><a href="" target="_blank">Item</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Hospitalizations</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>* Hospitalization (ever hospitalized) if available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(window).ready(function() {
+      $('.loader').fadeOut("slow");
+    });
+
+    //
+    // $("#date").text("Last update: 4/1/2020");
+
+
+    // var mymap = L.map('map', {
+    //   center: [44, -122.5],
+    //   zoomControl: false,
+    //   zoom: 7,
+    //   maxZoom: 10,
+    //   minZoom: 3,
+    // });
+    //
+    // new L.Control.Zoom({
+    //   position: 'topright'
+    // }).addTo(mymap);
+
+
+    // var gray = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png');
+    // var voyager =
+    //   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png').addTo(mymap);
+    // var satellite =
+    //   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
+    // mapbox_token = 'pk.eyJ1IjoiYmVuamlhbnRvbGluIiwiYSI6ImNqcm9uazFpczE1ajM0M3Buem83ZGpuY3oifQ.OpSUwJRtxBMPDFUUJnhLVg';
+    //       var gl = L.mapboxGL({
+    //           accessToken: mapbox_token,
+    //           style: 'mapbox://styles/benjiantolin/ck85fv6ct04i71iocpwjx45k8',
+    //           // attribution: 'Created By <a href="https://github.com/benjiantolin/">Benjamin Antolin</a> based on the <a href="Assets/license.txt">Mapbox basic style</a>'
+    //       }).addTo(map);
+
+    //
+    // var baseLayers = {
+    //   'CartoDB Light': gray,
+    //   'CartoDB Voyager': voyager,
+    //   'ESRI Satellite': satellite
+    // }
+
+
+
+    var chart, agechart;
+
+    // var colors = chroma.scale('YlOrRd').mode('lch').colors(6);
+    // for (i = 0; i < 6; i++) {
+    //   $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+    //   $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
+    // }
+
+
+    // var communities = new L.MarkerClusterGroup({
+    //   spiderfyOnMaxZoom: false,
+    //   singleMarkerMode: true,
+    //   // showCoverageOnHover: false,
+    //   // zoomToBoundsOnClick: false,
+    //   iconCreateFunction: function(cluster) {
+    //     return L.divIcon({
+    //       html: '<i class="fas fa-procedures community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
+    //     });
+    //   }
+    //
+    // });
+    //
+    //
+    // var cases = new L.MarkerClusterGroup({
+    //   spiderfyOnMaxZoom: true,
+    //   singleMarkerMode: true,
+    //   // showCoverageOnHover: false,
+    //   // zoomToBoundsOnClick: false,
+    //   iconCreateFunction: function(cluster) {
+    //     return L.divIcon({
+    //       html: '<i class="fas fa-users community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
+    //     });
+    //   }
+    //
+    // }).addTo(mymap);
+
+
+
+    Promise.all([
+      d3.csv('assets/salesAll.csv'),
+      d3.csv('assets/supply.csv'),
+      d3.csv('assets/alaid.csv'),
+      d3.csv('assets/employAll.csv'),
+      d3.csv('assets/budgetAll.csv'),
+      d3.csv('assets/mlaid.csv'),
+      // d3.json("assets/virusWashingtonMin.geojson")
+    ]).then(function(datasets) {
+
+
+      // datasets[2].forEach(function(d) {
+      //   L.marker([parseFloat(d.lat), parseFloat(d.lng)]).bindPopup(d.name + "&nbsp;&nbsp;(<a target='_blank' href='https://translate.google.com/#view=home&op=translate&sl=zh-CN&tl=en&text=" + d.name + "'>Translate to English</a>)").addTo(
+      //     communities);
+      // })
+      //
+      //
+      // datasets[4].forEach(function(d) {
+      //   //console.log(d.id)
+      //   L.marker([parseFloat(d.lat), parseFloat(d.lng)]).bindPopup("<b>" + d.no + "</b> <p>" + d.note + " identified on " + d.date + ", &nbsp;" + d.reference + ".</p>").addTo(
+      //     cases);
+      // })
+
+
+
+
+      // //totalCases
+      // function tc(county) {
+      //   if (county == undefined) {
+      //     county = 0
+      //   } else {
+      //     county = +county.split("-")[0];
+      //   }
+      //   return county;
+      // }
+      //
+      //
+      // //totalDeath
+      // function td(county) {
+      //   if (county.split("-")[1] == undefined) {
+      //     county = 0
+      //   } else {
+      //     county = +county.split("-")[1];
+      //   }
+      //   return county;
+      // }
+      //
+
+      var field = ["field"];
+      var more = ["Down 75% or more"];
+      var fifty = ["Down 50% to 74%"];
+      var twentysix = ["Down 26% to 49%"];
+      var teen = ["Down 11% to 25%"];
+      var ten = ["Down 10% or less"];
+      var flat = ["Flat or up"];
+      var dnk = ["Do not know"];
+
+      datasets[0].forEach(function(d) {
+        field.push(+d["field"])
+        more.push(+d["Down 75% or more"])
+        fifty.push(+d["Down 50% to 74%"])
+        twentysix.push(+d["Down 26% to 49%"])
+        teen.push(+d["Down 11% to 25%"])
+        ten.push(+d["Down 10% or less"])
+        flat.push(+d["Flat or up"])
+        dnk.push(+d["Do not know"])
+      });
+
+      chart = c3.generate({
+        // size: {
+        //   height: 150,
+        //   width: 550
+        // },
+        data: {
+          columns: [flat, ten, teen, twentysix, fifty, more, dnk],
+          type: 'bar',
+          labels: true,
+          groups: [
+            ['Flat or up', 'Down 10% or less', 'Down 11% to 25%', 'Down 26% to 49%', 'Down 50% to 74%', 'Down 75% or more', 'Do not know']
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        bindto: "#total-chart"
+      });
+
+
+      var field = ["field"];
+      var same = ["Budget and expenses are the same or similar"];
+      var slightdec = ["Budget has tightened and expenses reduced slightly"];
+      var sigdec = ["Budget tightened and expenses reduced significantly"];
+      var tightinc = ["Budget tightened and expenses increased"];
+      var incinc = ["Budget increased and expenses increased"];
+      var dnk = ["Do not know"];
+
+      datasets[4].forEach(function(d) {
+        field.push(+d["field"])
+        same.push(+d["Budget and expenses are the same or similar"])
+        slightdec.push(+d["Budget has tightened and expenses reduced slightly"])
+        sigdec.push(+d["Budget tightened and expenses reduced significantly"])
+        tightinc.push(+d["Budget tightened and expenses increased"])
+        incinc.push(+d["Budget increased and expenses increased"])
+        dnk.push(+d["Do not know"])
+      });
+
+      chart = c3.generate({
+        // size: {
+        //   height: 150,
+        //   width: 550
+        // },
+        data: {
+          columns: [same, slightdec, sigdec, tightinc, incinc, dnk],
+          type: 'bar',
+          labels: true,
+          groups: [
+            ['Budget and expenses are the same or similar', 'Budget has tightened and expenses reduced slightly', 'Budget tightened and expenses reduced significantly', 'Budget tightened and expenses increased',
+              'Budget increased and expenses increased', 'Do not know'
+            ]
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#4575b4', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        bindto: "#budget-chart"
+      });
+      // color: {
+      //   pattern: ['#b5573a', '#4769a1']
+      // },
+
+
+      // x = Object.keys(stop).slice(0, 9);
+      // x.reverse();
+      // x.push("x");
+      // x.reverse();
+      //
+      // y = Object.values(stop).slice(0, 9);
+      // y.reverse();
+      // y.push("Confirmed Cases");
+      // y.reverse();
+
+      // Current Age Group Bar Chart
+
+      var field = ["field"];
+      var noChange = ["Employment needs have not changed"];
+      var hiring = ["More employees needed - we are hiring"];
+      var furlo = ["Less work so we have temporarily furloughed employees"];
+      var laidoff = ["Less work so we have laid off employees"];
+      var closed = ["We have closed our doors and laid off most or all staff"];
+      var dnk = ["Do not know"];
+
+      datasets[3].forEach(function(d) {
+        field.push(+d["field"])
+        noChange.push(+d["Employment needs have not changed"])
+        hiring.push(+d["More employees needed - we are hiring"])
+        furlo.push(+d["Less work so we have temporarily furloughed employees"])
+        laidoff.push(+d["Less work so we have laid off employees"])
+        closed.push(+d["We have closed our doors and laid off most or all staff"])
+        dnk.push(+d["Do not know"])
+      });
+
+      var empchart = c3.generate({
+        data: {
+          columns: [hiring, noChange, furlo, laidoff, closed, dnk],
+          type: 'bar',
+          labels: true,
+          groups: [
+            ['Employment needs have not changed', 'More employees needed - we are hiring', 'Less work so we have temporarily furloughed employees', 'Less work so we have laid off employees',
+              'We have closed our doors and laid off most or all staff', 'Do not know'
+            ]
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#4575b4', '#74add1', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        bindto: "#employ-chart"
+      });
+
+      // Aggregate Proportion of Hospitilizations Pie Chart
+
+      var notLaid = ["Haven't furloughed or laid off employees"];
+      var ten = ["1% to 10%"];
+      var twenty = ["11% to 20%"];
+      var thirty = ["21% to 30%"];
+      var forty = ["31% to 40%"];
+      var fifty = ["41% to 50%"];
+      var over = ["Over 50%"];
+      var na = ["Do not know"];
+
+      datasets[2].forEach(function(d) {
+        notLaid.push(+d["Haven't furloughed or laid off employees"])
+        ten.push(+d["1% to 10%"])
+        twenty.push(+d["11% to 20%"])
+        thirty.push(+d["21% to 30%"])
+        forty.push(+d["31% to 40%"])
+        fifty.push(+d["41% to 50%"])
+        over.push(+d["Over 50%"])
+        na.push(+d["Do not know"])
+      });
+
+      alaidchart = c3.generate({
+        // size: {
+        //   height: 280,
+        //   width: 440
+        // },
+        data: {
+          columns: [notLaid, ten, twenty, thirty, forty, fifty, na],
+          type: 'donut',
+          // labels: true,
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+        },
+        tooltip: {
+          format: {
+            value: function(value, ratio, id, index) {
+              return value + " Associations";
+            }
+          }
+        },
+        bindto: "#alaid-chart"
+      });
+
+      var notLaid = ["Haven't furloughed or laid off employees"];
+      var ten = ["1% to 10%"];
+      var twenty = ["11% to 20%"];
+      var thirty = ["21% to 30%"];
+      var forty = ["31% to 40%"];
+      var fifty = ["41% to 50%"];
+      var over = ["Over 50%"];
+      var na = ["Do not know"];
+
+      datasets[5].forEach(function(d) {
+        notLaid.push(+d["Haven't furloughed or laid off employees"])
+        ten.push(+d["1% to 10%"])
+        twenty.push(+d["11% to 20%"])
+        thirty.push(+d["21% to 30%"])
+        forty.push(+d["31% to 40%"])
+        fifty.push(+d["41% to 50%"])
+        over.push(+d["Over 50%"])
+        na.push(+d["Do not know"])
+      });
+
+      alaidchart = c3.generate({
+        // size: {
+        //   height: 280,
+        //   width: 440
+        // },
+        data: {
+          columns: [notLaid, ten, twenty, thirty, forty, fifty, na],
+          type: 'donut',
+          // labels: true,
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+        },
+        tooltip: {
+          format: {
+            value: function(value, ratio, id, index) {
+              return value + " Members";
+            }
+          }
+        },
+        bindto: "#mlaid-chart"
+      });
+
+      // Aggregate Proportion of Hospitilizations Pie Chart
+      var ass = ["Count"];
+      var y = ["Yes, significantly"];
+      var yb = ["Yes, but not significantly"];
+      var nb = ["No, but continued slowdown in the economy could change that"];
+      var n = ["No, our supply chain and distribution are secure and unchanged"];
+      datasets[1].forEach(function(d) {
+        ass.push(+d["Count"])
+        y.push(+d["Yes, significantly"])
+        yb.push(+d["Yes, but not significantly"])
+        nb.push(+d["No, but continued slowdown in the economy could change that"])
+        n.push(+d["No, our supply chain and distribution are secure and unchanged"])
+      });
+
+
+      supplychart = c3.generate({
+        size: {
+          height: 150,
+        },
+        data: {
+          columns: [n, nb, yb, y],
+          type: 'bar',
+          labels: true,
+          groups: [
+            ['Yes, significantly', 'Yes, but not significantly', 'No, but continued slowdown in the economy could change that', 'No, our supply chain and distribution are secure and unchanged']
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: ['#0571b0', '#fee090', '#f4a582', '#ca0020']
+        },
+        axis: {
+          x: {
+            type: "category",
+            // categories: ['Female', 'Male', 'NA']
+          },
+          rotated: true
+        },
+        // color: {
+        //   pattern: ['#b5573a', '#4769a1']
+        // },
+        bindto: "#supply-chart"
+      });
+
+    });
+
+    /////////////////////////
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140689399-6');
+  </script>
+
+
+</body>
+
+</html>
