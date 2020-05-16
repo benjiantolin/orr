@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="authors" content="Benji Antolin">
-  <title>ORR Workforce Survey Dashboard</title>
+  <title>ORR Survey Dashboard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/simplebar.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
   <script src="js/d3.js"></script>
   <script src="js/c3.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -42,7 +42,7 @@
       </div>
       <div id="deck-5" class="card-deck counts">
         <div class="card">
-          <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
+          <a class="twitter-timeline" data-theme="light" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
@@ -52,8 +52,9 @@
 
     </div>
 
-    <div id="wrapper" data-simplebar data-simplebar-auto-hide="true">
-      <div id="deck-one" class="card-deck counts">
+    <!-- start wrapper -->
+    <div id="dashboard" data-simplebar data-simplebar-auto-hide="true">
+      <!-- <div id="deck-one" class="card-deck counts">
         <div class="card">
           <div id="title" style="font-size:34px"><i class="fas fa-tachometer-alt"></i> Workforce Survey Dashboard
             <span><a href="https://www.facebook.com/OutdoorRecreationRoundtable/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
@@ -62,13 +63,39 @@
             <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
           </div>
         </div>
-      </div>
+      </div> -->
+      <!-- <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+            Card Title
+            </div>
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Card Title
+            </div>
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+                Card Title
+            </div>
+          </center>
+          <div></div>
+        </div>
+      </div> -->
       <div id="deck-one" class="card-deck counts">
         <div class="card">
           <center>
             <div class="card-title">
-            Has the global coronavirus pandemic disrupted your industry's supply chain and/or distribution of product?
-            <div>
+              Has the global coronavirus pandemic disrupted your industry's supply chain and/or distribution of product?
+            </div>
           </center>
           <div id="supply-chart"></div>
         </div>
@@ -111,6 +138,7 @@
         </div>
       </div>
     </div>
+    <!-- End Wrapper -->
 
   </main>
   <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -131,14 +159,14 @@
 
             <h5>Update Procedure</h5>
             To be determined...
-<p>
+            <p>
               * If you have any questions or concerns, please contact <a href="mailto:benjiantolin@gmail.com">Benji Antolin</a>.
             </p>
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div id="resourcewindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
@@ -180,82 +208,13 @@
       $('.loader').fadeOut("slow");
     });
 
-    //
     // $("#date").text("Last update: 4/1/2020");
-
-
-    // var mymap = L.map('map', {
-    //   center: [44, -122.5],
-    //   zoomControl: false,
-    //   zoom: 7,
-    //   maxZoom: 10,
-    //   minZoom: 3,
-    // });
-    //
-    // new L.Control.Zoom({
-    //   position: 'topright'
-    // }).addTo(mymap);
-
-
-    // var gray = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png');
-    // var voyager =
-    //   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png').addTo(mymap);
-    // var satellite =
-    //   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
-
-    // mapbox_token = 'pk.eyJ1IjoiYmVuamlhbnRvbGluIiwiYSI6ImNqcm9uazFpczE1ajM0M3Buem83ZGpuY3oifQ.OpSUwJRtxBMPDFUUJnhLVg';
-    //       var gl = L.mapboxGL({
-    //           accessToken: mapbox_token,
-    //           style: 'mapbox://styles/benjiantolin/ck85fv6ct04i71iocpwjx45k8',
-    //           // attribution: 'Created By <a href="https://github.com/benjiantolin/">Benjamin Antolin</a> based on the <a href="Assets/license.txt">Mapbox basic style</a>'
-    //       }).addTo(map);
-
-    //
-    // var baseLayers = {
-    //   'CartoDB Light': gray,
-    //   'CartoDB Voyager': voyager,
-    //   'ESRI Satellite': satellite
-    // }
-
-
 
     var chart, agechart;
 
-    // var colors = chroma.scale('YlOrRd').mode('lch').colors(6);
-    // for (i = 0; i < 6; i++) {
-    //   $('head').append($("<style> .region-color-" + (i + 1).toString() + " { color: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
-    //   $('head').append($("<style> .legend-color-" + (i + 1).toString() + " { background: " + colors[i] + "; font-size: 15px; text-shadow: 0 0 3px #ffffff;} </style>"));
-    // }
-
-
-    // var communities = new L.MarkerClusterGroup({
-    //   spiderfyOnMaxZoom: false,
-    //   singleMarkerMode: true,
-    //   // showCoverageOnHover: false,
-    //   // zoomToBoundsOnClick: false,
-    //   iconCreateFunction: function(cluster) {
-    //     return L.divIcon({
-    //       html: '<i class="fas fa-procedures community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
-    //     });
-    //   }
-    //
-    // });
-    //
-    //
-    // var cases = new L.MarkerClusterGroup({
-    //   spiderfyOnMaxZoom: true,
-    //   singleMarkerMode: true,
-    //   // showCoverageOnHover: false,
-    //   // zoomToBoundsOnClick: false,
-    //   iconCreateFunction: function(cluster) {
-    //     return L.divIcon({
-    //       html: '<i class="fas fa-users community community-marker"> <b>' + cluster.getChildCount() + '</b></i>'
-    //     });
-    //   }
-    //
-    // }).addTo(mymap);
-
-
+    var color4 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(4);
+    var color5 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(5);
+    var color6 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(6);
 
     Promise.all([
       d3.csv('assets/salesAll.csv'),
@@ -340,7 +299,7 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
         },
         axis: {
           x: {
@@ -348,6 +307,9 @@
             categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
           },
           rotated: true
+        },
+        tooltip: {
+          show: false
         },
         bindto: "#total-chart"
       });
@@ -388,7 +350,7 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#4575b4', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+          pattern: [color5[0], color5[1], color5[2], color5[3], color5[4], 'grey']
         },
         axis: {
           x: {
@@ -396,6 +358,9 @@
             categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
           },
           rotated: true
+        },
+        tooltip: {
+          show: false
         },
         bindto: "#budget-chart"
       });
@@ -447,7 +412,7 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#4575b4', '#74add1', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+          pattern: [color5[0], color5[1], color5[2], color5[3], color5[4], 'grey']
         },
         axis: {
           x: {
@@ -455,6 +420,9 @@
             categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
           },
           rotated: true
+        },
+        tooltip: {
+          show: false
         },
         bindto: "#employ-chart"
       });
@@ -493,14 +461,10 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
         },
         tooltip: {
-          format: {
-            value: function(value, ratio, id, index) {
-              return value + " Associations";
-            }
-          }
+          show: false
         },
         bindto: "#alaid-chart"
       });
@@ -537,14 +501,10 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#4575b4', '#fdae61', '#feb24c', '#fd8d3c', '#f03b20', '#bd0026', 'grey']
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
         },
         tooltip: {
-          format: {
-            value: function(value, ratio, id, index) {
-              return value + " Members";
-            }
-          }
+          show: false
         },
         bindto: "#mlaid-chart"
       });
@@ -566,7 +526,7 @@
 
       supplychart = c3.generate({
         size: {
-          height: 150,
+          height: 185,
         },
         data: {
           columns: [n, nb, yb, y],
@@ -578,7 +538,7 @@
           order: null // stack order by data definition.
         },
         color: {
-          pattern: ['#0571b0', '#fee090', '#f4a582', '#ca0020']
+          pattern: [color4[0], color4[1], color4[2], color4[3]]
         },
         axis: {
           x: {
@@ -587,9 +547,9 @@
           },
           rotated: true
         },
-        // color: {
-        //   pattern: ['#b5573a', '#4769a1']
-        // },
+        tooltip: {
+          show: false
+        },
         bindto: "#supply-chart"
       });
 
@@ -601,9 +561,12 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-140689399-7');
   </script>
 

@@ -3,21 +3,9 @@ html, body, main {
   width: 100%;
   height: 100vh;
   margin: 0;
-  background: #fff;
+  background: #5e749d;
   font-family: 'Monserratt ', sans-serif;
   overflow: hidden
-}
-
-
-.leaflet-tooltip.feature-label {
-    background-color: transparent;
-    border: transparent;
-    box-shadow: none;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: 'Monserratt', sans-serif;
-    text-shadow: 0 0 2px #FFFFFF;
-    color: #dc3545;
 }
 
 .loader {
@@ -52,96 +40,11 @@ div#footer>div {
   line-height: 20px;
 }
 
-#map {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  /* z-index: 1000 !important; */
-  left: 0;
-  right: 0;
-  margin: 0;
-  background: #fff;
-  font-family: 'Monserratt ', sans-serif;
-  overflow: hidden
-}
-
-.leaflet-control-layers {
-  color: white !important;
-  background-color: none;
-  padding: 6px 8px;
-  border: none !important;
-  background: #343a40 !important;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 5px !important;
-}
-
-.leaflet-control-zoom, .leaflet-control-zoom-in, .leaflet-control-zoom-out {
-  color: white !important;
-  padding: 0px !important;
-  background-color: none;
-  border: none !important;
-  background: #343a40 !important;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 5px !important;
-}
-
 .c3-legend-background {
   fill: transparent;
   stroke: transparent;
 }
 
-/* Responsive css */
-@media only screen and (max-width: 1026px) {
-  .legend, .leaflet-control-layers {
-    display: none;
-  }
-
-  /* #info, #rank-chart, #total-chart,#age-chart, .c3-legend-item, #deck-2, .c3-legend-background, #footer, #title>img, #title>span {
-    visibility: hidden !important;
-  } */
-
-  /* .simplebar-track {
-    visibility: hidden !important;
-  } */
-
-  /* #info {
-    position: fixed !important;
-    top: 0px;
-    height: 50%;
-    left: 0;
-    width: 100wh !important;
-  } */
-
-  /* #title {
-    position: fixed;
-    color: black;
-    font-size: 18px !important;
-    top: 5px !important;
-    left: -20px !important;
-    width: 400px !important;
-  } */
-
-
-  /* #date {
-    color: black;
-    font-size: 12px !important;
-    position: fixed !important;
-    left: 12px;
-    top: 65px !important;
-    width: 300px;
-  } */
-
-
-  /* .card-text {
-    font-size: 12px !important
-  }
-
-  .card-title {
-    font-size: 10px !important
-  } */
-}
 
 #info {
   position: absolute;
@@ -150,30 +53,32 @@ div#footer>div {
   bottom: 0%;
   left: 0%;
   z-index: 1000;
-  background: #343a40;
-  color: white;
+  background: #5c8e53;
+  color: #2a4c7e ;
   opacity: 1;
   padding: 5px 15px 20px 15px;
 }
 
-#wrapper {
+#dashboard {
   position: absolute;
   width: 75%;
   top: 0%;
   bottom: 0%;
   left: 25%;
   z-index: 1000;
-  background: #343a40;
-  color: white;
+  background: #5c8e53;
+  color: #2a4c7e ;
   opacity: 1;
   padding: 5px 15px 20px 15px;
 }
 
 .card-deck .card {
-  background: #343a40;
+  background: #ffffff;
   padding: 2px;
-  margin-right: 0px;
-  margin-left: 0px;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .card-body {
@@ -188,38 +93,15 @@ font-size: 33px !important
 }
 
 .card-title {
-  color: white;
+  color: #2a4c7e ;
   font-size: 16px;
   margin-bottom: 0rem;
   font-weight: bold;
 }
 
-#legend-panel {
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  width: 300px;
-  height: 20px;
-  z-index: 1000;
-  background: #343a4000;
-}
-
-.legend .card {
-  background: #343a4000;
-  padding: 0;
-}
-
-.legend .card-title {
-  font-size: 13px;
-  /* text-align: left; */
-  /* padding-left: 4px; */
-  /* background: #343a4000; */
-}
-
 .card-text {
   font-size: 40px;
   text-align: center;
-  /* background: #343a4000; */
 }
 
 #info h4 i {
@@ -249,17 +131,17 @@ span {
   color: white;
 }
 
-#wrapper a {
+#dashboard a {
   font-size: 30px;
-  color: white;
+  color: black;
 }
 
 #info a:hover {
   color: white;
   opacity: 0.3;
 }
-#wrapper a:hover {
-  color: white;
+#dashboard a:hover {
+  color: black;
   opacity: 0.3;
 }
 
@@ -301,7 +183,7 @@ span {
 }
 
 text {
-  fill: gray
+  fill: #2a4c7e
 }
 
 .tick line {
@@ -312,9 +194,6 @@ text {
   stroke: gray;
 }
 
-.c3-bar {
-  /* fill: #dc3545 !important; */
-}
 .name {
   background-color: black;
   color: black
@@ -324,23 +203,6 @@ text {
   background-color: black;
   color: black
 }
-
-#total-chart {
-  position: relative;
-  /* top: 10px;
-  left: -20px; */
-}
-
-#agegroup-chart {
-  position: relative;
-  /* top: 30px;
-  left: -20px; */
-}
-
-
-/* #agegroup-chart>div>table>tbody>tr>td>span {
-  background-color: #dc3545 !important
-} */
 
 #footer {
   position: relative;
@@ -356,67 +218,6 @@ text {
   font-size: 13px;
 }
 
-.cases-count {
-  color: #dc3545;
-}
-
-
-.cases-new-count {
-  color: orange;
-}
-
-/* .suspected-count {
-  color: orange;
-} */
-
-.neg-count {
-  color: #28a745;
-}
-
-.death-count {
-  color: #5d4f72e8;
-}
-
-
-.confirmed-new-count {
-vertical-align:super !important;
-font-size:50% !important;
-color: #dc3545;
-font-style: italic;
-font-kerning: normal;
-}
-
-
-.active-new-count {
-vertical-align:super !important;
-font-size:50% !important;
-color: orange;
-font-style: italic;
-font-kerning: normal;
-}
-
-
-.death-new-count {
-vertical-align:super !important;
-font-size:50% !important;
-color: #5d4f72e8;
-font-style: italic;
-font-kerning: normal;
-}
-
-
-.neg-new-count {
-vertical-align:super !important;
-font-size:50% !important;
-color: #28a745;
-font-style: italic;
-font-kerning: normal;
-}
-
-#stateButton {
-font-size:70% !important;
-width: 150px;
-}
 
 .virusImg {
   width:auto;
@@ -427,9 +228,3 @@ width: 150px;
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-
-/* .textLabelclass a {
-  white-space: nowrap;
-  font-size: 10px;
-  color: brown !important;
-} */
