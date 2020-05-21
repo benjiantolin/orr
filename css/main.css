@@ -216,6 +216,21 @@ text {
 }
 
 #title2 img{
-  height: 100%;
-  width: 50%;
+  height:100%;
+  width: 90%;
+  float:left;
+  padding-left: 15px;
+}
+
+.column {
+float: left;
+width: 50%;
+padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+content: "";
+clear: both;
+display: table;
 }
