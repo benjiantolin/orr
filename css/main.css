@@ -85,12 +85,8 @@ div#footer>div {
   padding: 0;
   margin: 0;
   text-align: center;
-
 }
 
-.card-text {
-font-size: 33px !important
-}
 
 .card-title {
   color: #2a4c7e ;
@@ -148,22 +144,13 @@ span {
 #date {
   position: relative;
   top: -20px;
-  /* bottom: -40px; */
-  /* position: relative;
-  top: -85px;
-  left: 30px; */
-  /* text-align: left; */
   font-size: 14px;
-  /* font-weight:  */
   color: danger;
-  /* font-family: 'Oswald', sans-serif; */
-  /* font-size: 48px; */
 }
 
 #placename {
   font-size: 40px;
   position: relative;
-  /* top: -20px; */
   font-family: 'Monserratt ', sans-serif;
 }
 
@@ -219,12 +206,16 @@ text {
 }
 
 
-.virusImg {
-  width:auto;
-   text-align:center;
-   padding:20px;
-}
-
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.memberimg img{
+  height: 15%;
+  width: 15%;
+}
+
+#title2 img{
+  height: 100%;
+  width: 75%;
 }
