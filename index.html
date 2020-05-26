@@ -259,7 +259,7 @@ box-sizing: border-box;
       </div>
     </div>
   </div>
-  <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <!-- <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
       <div class="modal-content">
         <div class="modal-header">
@@ -275,7 +275,7 @@ box-sizing: border-box;
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <script>
     $(window).ready(function() {
       $('.loader').fadeOut("slow");
@@ -358,14 +358,13 @@ box-sizing: border-box;
       });
 
       chart = c3.generate({
-        // size: {
-        //   height: 150,
-        //   width: 550
-        // },
         data: {
+          stack: {
+            normalize: true
+          },
           columns: [flat, ten, teen, twentysix, fifty, more, dnk],
           type: 'bar',
-          labels: true,
+          // labels: true,
           groups: [
             ['Flat or up', 'Down 10% or less', 'Down 11% to 25%', 'Down 26% to 49%', 'Down 50% to 74%', 'Down 75% or more', 'Do not know']
           ],
@@ -389,11 +388,11 @@ box-sizing: border-box;
 
 
       var field = ["field"];
-      var same = ["Budget and expenses are the same or similar"];
-      var slightdec = ["Budget has tightened and expenses reduced slightly"];
-      var sigdec = ["Budget tightened and expenses reduced significantly"];
-      var tightinc = ["Budget tightened and expenses increased"];
-      var incinc = ["Budget increased and expenses increased"];
+      var same = ["Same or similar"];
+      var slightdec = ["Budget tightened, expenses slightly reduced"];
+      var sigdec = ["Budget tightened, expenses significantly reduced"];
+      var tightinc = ["Budget tightened, expenses increased"];
+      var incinc = ["Both increased"];
       var dnk = ["Do not know"];
 
       datasets[4].forEach(function(d) {
@@ -407,17 +406,17 @@ box-sizing: border-box;
       });
 
       chart = c3.generate({
-        // size: {
-        //   height: 150,
-        //   width: 550
-        // },
+
         data: {
+          stack: {
+            normalize: true
+          },
           columns: [same, slightdec, sigdec, tightinc, incinc, dnk],
           type: 'bar',
-          labels: true,
+          // labels: true,
           groups: [
-            ['Budget and expenses are the same or similar', 'Budget has tightened and expenses reduced slightly', 'Budget tightened and expenses reduced significantly', 'Budget tightened and expenses increased',
-              'Budget increased and expenses increased', 'Do not know'
+            ['Same or similar', 'Budget tightened, expenses slightly reduced', 'Budget tightened, expenses significantly reduced', 'Budget tightened, expenses increased',
+              'Both increased', 'Do not know'
             ]
           ],
           order: null // stack order by data definition.
@@ -455,11 +454,11 @@ box-sizing: border-box;
       // Current Age Group Bar Chart
 
       var field = ["field"];
-      var noChange = ["Employment needs have not changed"];
-      var hiring = ["More employees needed - we are hiring"];
-      var furlo = ["Less work so we have temporarily furloughed employees"];
-      var laidoff = ["Less work so we have laid off employees"];
-      var closed = ["We have closed our doors and laid off most or all staff"];
+      var noChange = ["No change"];
+      var hiring = ["We are hiring"];
+      var furlo = ["Temporary furloughs"];
+      var laidoff = ["Laying off employees"];
+      var closed = ["Closed doors, laid off most or all staff"];
       var dnk = ["Do not know"];
 
       datasets[3].forEach(function(d) {
@@ -474,12 +473,15 @@ box-sizing: border-box;
 
       var empchart = c3.generate({
         data: {
+          stack: {
+            normalize: true
+          },
           columns: [hiring, noChange, furlo, laidoff, closed, dnk],
           type: 'bar',
-          labels: true,
+          // labels: true,
           groups: [
-            ['Employment needs have not changed', 'More employees needed - we are hiring', 'Less work so we have temporarily furloughed employees', 'Less work so we have laid off employees',
-              'We have closed our doors and laid off most or all staff', 'Do not know'
+            ['No change', 'We are hiring', 'Temporary furloughs', 'Laying off employees',
+              'Closed doors, laid off most or all staff', 'Do not know'
             ]
           ],
           order: null // stack order by data definition.
@@ -502,7 +504,7 @@ box-sizing: border-box;
 
       // Aggregate Proportion of Hospitilizations Pie Chart
 
-      var notLaid = ["Haven't furloughed or laid off employees"];
+      var notLaid = ["None"];
       var ten = ["1% to 10%"];
       var twenty = ["11% to 20%"];
       var thirty = ["21% to 30%"];
@@ -542,7 +544,7 @@ box-sizing: border-box;
         bindto: "#alaid-chart"
       });
 
-      var notLaid = ["Haven't furloughed or laid off employees"];
+      var notLaid = ["None"];
       var ten = ["1% to 10%"];
       var twenty = ["11% to 20%"];
       var thirty = ["21% to 30%"];
@@ -586,8 +588,8 @@ box-sizing: border-box;
       var ass = ["Count"];
       var y = ["Yes, significantly"];
       var yb = ["Yes, but not significantly"];
-      var nb = ["No, but continued slowdown in the economy could change that"];
-      var n = ["No, our supply chain and distribution are secure and unchanged"];
+      var nb = ["No, but future changes possible"];
+      var n = ["No, supply chain/distribution are unchanged"];
       datasets[1].forEach(function(d) {
         ass.push(+d["Count"])
         y.push(+d["Yes, significantly"])
@@ -602,11 +604,14 @@ box-sizing: border-box;
           height: 185,
         },
         data: {
+          stack: {
+            normalize: true
+          },
           columns: [n, nb, yb, y],
           type: 'bar',
-          labels: true,
+          // labels: true,
           groups: [
-            ['Yes, significantly', 'Yes, but not significantly', 'No, but continued slowdown in the economy could change that', 'No, our supply chain and distribution are secure and unchanged']
+            ['Yes, significantly', 'Yes, but not significantly', 'No, but future changes possible', 'No, supply chain/distribution are unchanged']
           ],
           order: null // stack order by data definition.
         },
