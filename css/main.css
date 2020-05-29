@@ -23,6 +23,20 @@ div#footer>div {
   margin-bottom: 10px
 }
 
+#buttons :hover{
+  /* opacity: .63; */
+  background: #2a4c7e;
+  color: #ffffff;
+  cursor: pointer;
+}
+.fas{
+  /* color: #5c8e53; */
+  font-size: 300%;
+}
+#buttons .card{
+font-weight: bold;
+
+}
 
 #demo {
   font-size: 14px
@@ -54,9 +68,9 @@ div#footer>div {
   left: 0%;
   z-index: 1000;
   background: #5c8e53;
-  color: #2a4c7e ;
+  color: #2a4c7e;
   opacity: 1;
-  padding: 5px 15px 20px 15px;
+  padding: 5px 15px 20px 20px;
 }
 
 #dashboard {
@@ -69,7 +83,7 @@ div#footer>div {
   background: #5c8e53;
   color: #2a4c7e ;
   opacity: 1;
-  padding: 5px 15px 20px 15px;
+  padding: 5px 20px 15px 20px;
 }
 
 .card-deck .card {

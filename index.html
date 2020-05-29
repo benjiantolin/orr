@@ -18,10 +18,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <link rel="stylesheet" href="css/main.css">
   <style>
- /* {
+    /* {
 box-sizing: border-box;
 } */
-
   </style>
   <!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
   <script src="js/d3.js"></script>
@@ -45,17 +44,49 @@ box-sizing: border-box;
         <div class="card">
           <div id="title2">
             <div class="row">
-  <div class="column">
-          <a href="https://recreationroundtable.org/" target ="_blank"><img src="img\ORR.png"></a>
-          </div>
-          <div class="column">
-              <a href="https://orei.oregonstate.edu/" target ="_blank"><img src="img\OSU.png"></a>
-                  </div>
+              <div class="column">
+                <a href="https://recreationroundtable.org/" target="_blank"><img src="img\ORR.png"></a>
+              </div>
+              <div class="column">
+                <a href="https://orei.oregonstate.edu/" target="_blank"><img src="img\OSU.png"></a>
+              </div>
 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-      </div>
+      <!-- <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Number of Assosciation Employees
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Number of Member Employees
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Numbers of Member Businesses
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+      </div> -->
       <div id="deck-5" class="card-deck counts">
         <div class="card">
           <a class="twitter-timeline" data-theme="light" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
@@ -80,56 +111,93 @@ box-sizing: border-box;
           </div>
         </div>
       </div> -->
-      <!-- <div id="deck-one" class="card-deck counts">
+      <!-- <div id="buttons" class="card-deck counts">
         <div class="card">
           <center>
-            <div class="card-title">
-            Avg. Number of Assoc. Employees
+            <i class="fas fa-users"></i>
+            <div>
+                All
             </div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <i class="fas fa-fish"></i>
+            <div>
+            Fishing
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            Campgrounds + Hospitality
           </center>
           <div></div>
         </div>
         <div class="card">
           <center>
-            <div class="card-title">
-              Avg. Number of Member Businesses
-            </div>
+            Hunting
           </center>
           <div></div>
         </div>
         <div class="card">
           <center>
-            <div class="card-title">
-              Avg. Number of Member Employees
-            </div>
+            Motor Vehicle
           </center>
           <div></div>
         </div>
         <div class="card">
           <center>
-            <div class="card-title">
-              Manufacturer
-            </div>
+            Snowsports
           </center>
           <div></div>
         </div>
         <div class="card">
           <center>
-            <div class="card-title">
-              Retailer
-            </div>
+            Volunteer
           </center>
           <div></div>
         </div>
         <div class="card">
           <center>
-            <div class="card-title">
+            Water Sports
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Gear + Equipment
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Guides + Outfitters
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Manufacturer
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Retailer
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
             Service Provider
-            </div>
           </center>
           <div></div>
         </div>
       </div> -->
+
+
+
       <div id="deck-one" class="card-deck counts">
         <div class="card">
           <center>
@@ -178,37 +246,37 @@ box-sizing: border-box;
         </div>
       </div>
 
-        <div id="deck-4" class="card-deck counts">
-          <div class="card">
-            <center>
-              <div class="card-title">Participating Associations</div>
-              <span>
+      <div id="deck-4" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">Participating Associations</div>
+            <span>
               <div class="memberimg">
-                <a href="https://www.americaoutdoors.org/" target ="_blank"><img src="img\members\AO.png"></a>
-                <a href="https://www.horsecouncil.org/" target ="_blank"><img src="img\members\AHC.jpg"></a>
-                <a href="https://amga.com/" target ="_blank"><img src="img\members\AMGA.jpg"></a>
-                <a href="https://asafishing.org/" target ="_blank"><img src="img\members\ASA.jpg"></a>
-                <a href="https://www.archerytrade.org/" target ="_blank"><img src="img\members\ATA.png"></a>
-                <a href="https://www.arvc.org/" target ="_blank"><img src="img\members\ARVC.jpg"></a>
-                <a href="https://www.dema.org/" target ="_blank"><img src="img\members\DEMA.png"></a>
-                <a href="https://www.mraa.com/default.aspx" target ="_blank"><img src="img\members\MRAA.png"></a>
-                <a href="https://www.mic.org/#/" target ="_blank"><img src="img\members\MIC.png"></a>
-                <a href="http://nfra.org/" target ="_blank"><img src="img\members\NFRA.jpg"></a>
-                <a href="https://www.nmma.org/" target ="_blank"><img src="img\members\NMMA.jpg"></a>
-                <a href="http://www.parkpartners.org/" target ="_blank"><img src="img\members\NHPA.png"></a>
-                <a href="https://peopleforbikes.org/" target ="_blank"><img src="img\members\PFB.jpg"></a>
-                <a href="https://www.rvda.org/" target ="_blank"><img src="img\members\RVDA.png"></a>
-                <a href="https://www.rvia.org/" target ="_blank"><img src="img\members\RVIA.jpg"></a>
-                <a href="https://snowsports.org/" target ="_blank"><img src="img\members\SIA.jpg"></a>
-                <a href="http://www.snowmobile.org/" target ="_blank"><img src="img\members\ISMA.png"></a>
-                <a href="https://www.sema.org/" target ="_blank"><img src="img\members\SEMA.png"></a>
-                <a href="https://www.sfia.org/" target ="_blank"><img src="img\members\SFIA.jpg"></a>
-                <a href="https://corpsnetwork.org/" target ="_blank"><img src="img\members\TCN.png"></a>
+                <a href="https://www.americaoutdoors.org/" target="_blank"><img src="img\members\AO.png"></a>
+                <a href="https://www.horsecouncil.org/" target="_blank"><img src="img\members\AHC.jpg"></a>
+                <a href="https://amga.com/" target="_blank"><img src="img\members\AMGA.jpg"></a>
+                <a href="https://asafishing.org/" target="_blank"><img src="img\members\ASA.jpg"></a>
+                <a href="https://www.archerytrade.org/" target="_blank"><img src="img\members\ATA.png"></a>
+                <a href="https://www.arvc.org/" target="_blank"><img src="img\members\ARVC.jpg"></a>
+                <a href="https://www.dema.org/" target="_blank"><img src="img\members\DEMA.png"></a>
+                <a href="https://www.mraa.com/default.aspx" target="_blank"><img src="img\members\MRAA.png"></a>
+                <a href="https://www.mic.org/#/" target="_blank"><img src="img\members\MIC.png"></a>
+                <a href="http://nfra.org/" target="_blank"><img src="img\members\NFRA.jpg"></a>
+                <a href="https://www.nmma.org/" target="_blank"><img src="img\members\NMMA.jpg"></a>
+                <a href="http://www.parkpartners.org/" target="_blank"><img src="img\members\NHPA.png"></a>
+                <a href="https://peopleforbikes.org/" target="_blank"><img src="img\members\PFB.jpg"></a>
+                <a href="https://www.rvda.org/" target="_blank"><img src="img\members\RVDA.png"></a>
+                <a href="https://www.rvia.org/" target="_blank"><img src="img\members\RVIA.jpg"></a>
+                <a href="https://snowsports.org/" target="_blank"><img src="img\members\SIA.jpg"></a>
+                <a href="http://www.snowmobile.org/" target="_blank"><img src="img\members\ISMA.png"></a>
+                <a href="https://www.sema.org/" target="_blank"><img src="img\members\SEMA.png"></a>
+                <a href="https://www.sfia.org/" target="_blank"><img src="img\members\SFIA.jpg"></a>
+                <a href="https://corpsnetwork.org/" target="_blank"><img src="img\members\TCN.png"></a>
               </div>
             </span>
-            </center>
-          </div>
+          </center>
         </div>
+      </div>
 
     </div>
     <!-- End Wrapper -->
@@ -285,9 +353,9 @@ box-sizing: border-box;
 
     var chart, agechart;
 
-    var color4 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(4);
-    var color5 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(5);
-    var color6 = chroma.scale(['#5c8e53','#2a4c7e']).mode('lch').colors(6);
+    var color4 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(4);
+    var color5 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(5);
+    var color6 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(6);
 
     Promise.all([
       d3.csv('assets/salesAll.csv'),
@@ -630,7 +698,7 @@ box-sizing: border-box;
         },
         bindto: "#supply-chart"
       });
-
+$("#supply-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g > text").hide();
     });
 
     /////////////////////////
