@@ -23,31 +23,30 @@ div#footer>div {
   margin-bottom: 10px
 }
 
-button{
+button {
   background: #2a4c7e;
   color: #2a4c7e;
 }
 
-button .card{
+button .card {
   justify-content: center;
   align-items: center;
 }
 
-#buttons :hover{
+#buttons :hover {
   background: #2a4c7e;
   color: #ffffff;
   cursor: pointer;
 }
 
-
-.fas{
+.fas {
   /* color: #5c8e53; */
   font-size: 300%;
 }
 
-#buttons .card{
-font-weight: bold;
-font-size: 74%;
+#buttons .card {
+  font-weight: bold;
+  font-size: 74%;
 }
 
 .icons {
@@ -76,10 +75,9 @@ font-size: 74%;
   stroke: transparent;
 }
 
-
 #info {
   position: absolute;
-  width: 20%;
+  width: 25%;
   top: 0%;
   bottom: 0%;
   left: 0%;
@@ -92,13 +90,13 @@ font-size: 74%;
 
 #dashboard {
   position: absolute;
-  width: 80%;
+  width: 75%;
   top: 0%;
   bottom: 0%;
-  left: 20%;
+  left: 25%;
   z-index: 1000;
   background: #5c8e53;
-  color: #2a4c7e ;
+  color: #2a4c7e;
   opacity: 1;
   padding: 5px 20px 15px 20px;
 }
@@ -118,9 +116,8 @@ font-size: 74%;
   text-align: center;
 }
 
-
 .card-title {
-  color: #2a4c7e ;
+  color: #2a4c7e;
   font-size: 16px;
   margin-bottom: 0rem;
   font-weight: bold;
@@ -142,9 +139,7 @@ font-size: 74%;
   font-family: 'Monserratt ', sans-serif;
 }
 
-
 /* 4.	Brand guide – our web font is Georgia, Monserratt gets used for infographics, documents are Arial or Calibri.  */
-
 #title span {
   font-size: 18px;
   float: right;
@@ -167,6 +162,7 @@ span {
   color: white;
   opacity: 0.3;
 }
+
 #dashboard a:hover {
   color: black;
   opacity: 0.3;
@@ -236,28 +232,38 @@ text {
   font-size: 13px;
 }
 
-
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
 
-.memberimg img{
+.memberimg img {
   height: 15%;
   width: 15%;
 }
 
-#title2 img{
-  height:100%;
+#title2 img {
+  height: 100%;
   width: 90%;
-  float:left;
+  float: left;
   padding-left: 15px;
 }
 
 .column {
-float: right;
-width: 50%;
-padding: 5px;
+  float: right;
+  width: 50%;
+  padding: 5px;
 }
+
 .twitter-timeline {
   min-width: none;
+}
+
+p {
+  font-size: 16px;
+  margin: 5px 5px 5px 5px;
+}
+
+#disclaimer p{
+  font-size: 12px;
+  /* text-align: center; */
 }
