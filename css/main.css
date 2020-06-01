@@ -23,19 +23,36 @@ div#footer>div {
   margin-bottom: 10px
 }
 
+button{
+  background: #2a4c7e;
+  color: #2a4c7e;
+}
+
+button .card{
+  justify-content: center;
+  align-items: center;
+}
+
 #buttons :hover{
-  /* opacity: .63; */
   background: #2a4c7e;
   color: #ffffff;
   cursor: pointer;
 }
+
+
 .fas{
   /* color: #5c8e53; */
   font-size: 300%;
 }
+
 #buttons .card{
 font-weight: bold;
+font-size: 74%;
+}
 
+.icons {
+  justify-content: center;
+  align-items: center;
 }
 
 #demo {
@@ -62,7 +79,7 @@ font-weight: bold;
 
 #info {
   position: absolute;
-  width: 25%;
+  width: 20%;
   top: 0%;
   bottom: 0%;
   left: 0%;
@@ -75,10 +92,10 @@ font-weight: bold;
 
 #dashboard {
   position: absolute;
-  width: 75%;
+  width: 80%;
   top: 0%;
   bottom: 0%;
-  left: 25%;
+  left: 20%;
   z-index: 1000;
   background: #5c8e53;
   color: #2a4c7e ;
@@ -237,14 +254,10 @@ text {
 }
 
 .column {
-float: left;
+float: right;
 width: 50%;
 padding: 5px;
 }
-
-/* Clearfix (clear floats) */
-.row::after {
-content: "";
-clear: both;
-display: table;
+#twitter-widget-0 {
+  min-width: none;
 }
