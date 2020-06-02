@@ -219,7 +219,7 @@
         <div class="card">
           <center>
             <div class="card-title">
-              *Number of Trade Assosciation <br>Employees
+              *Number of Trade Assosciation Employees
             </div>
             <p class="card-text"><span class="sum1"></span></p>
           </center>
@@ -227,7 +227,7 @@
         <div class="card">
           <center>
             <div class="card-title">
-              *Number of Member <br>Businesses
+              *Number of Member Businesses
             </div>
             <p class="card-text"><span class="sum2"></span></p>
           </center>
@@ -235,7 +235,7 @@
         <div class="card">
           <center>
             <div class="card-title">
-              *Number of Member Business <br>Employees
+              *Number of Member Business Employees
             </div>
             <p class="card-text"><span class="sum3"></span></p>
           </center>
@@ -266,9 +266,6 @@
           </center>
           <div id="mlaid-chart"></div>
         </div>
-      </div>
-
-      <div id="deck-4" class="card-deck counts">
         <div class="card">
           <center>
             <div class="card-title">How have sales and revenue changed for your association AND for your members?</div>
@@ -277,6 +274,7 @@
         </div>
       </div>
 
+
       <div id="deck-4" class="card-deck counts">
         <div class="card">
           <center>
@@ -284,9 +282,6 @@
           </center>
           <div id="budget-chart"></div>
         </div>
-      </div>
-
-      <div id="deck-4" class="card-deck counts">
         <div class="card">
           <center>
             <div class="card-title">How have employment needs changed for your association AND for your members?</div>
@@ -461,8 +456,6 @@
           $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         })
       }
-      var zero = [0];
-
       var t = ["t"];
 
       var sum1 = ["sum1"];
@@ -8442,18 +8435,16 @@
         $("#deck-one > div:nth-child(3) > center > p > span").digits();
       }
 
-
-
       supplychart = c3.generate({
-        // size: {
-        //   width: 350,
-        // },
+        size: {
+          height: 185,
+        },
         data: {
-          x: "t",
+            x: "t",
           stack: {
             normalize: true
           },
-          columns: [t,all.sp1,all.sp2, all.sp3, all.sp4, all.sp5],
+          columns: [t,all.sp1, all.sp2, all.sp3, all.sp4, all.sp5],
           type: 'bar',
           // labels: true,
           groups: [
@@ -8482,28 +8473,12 @@
       alaidchart = c3.generate({
 
         data: {
-          x: "t",
-          stack: {
-            normalize: true
-          },
-          columns: [t, all.layA1, all.layA2, all.layA3, all.layA4, all.layA5, all.layA6, all.layA7, all.layA8],
-          type: 'bar',
-          groups: [
-            ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%','Over 50%' ,'Do not know']
-          ],
+          columns: [all.layA1, all.layA2, all.layA3, all.layA4, all.layA5, all.layA6, all.layA7, all.layA8],
+          type: 'donut',
           order: null // stack order by data definition.
         },
         color: {
           pattern: [color7[0], color7[1], color7[2], color7[3], color7[4], color7[5], color7[6], 'grey']
-        },
-        axis: {
-          x: {
-            type: "timeseries",
-            tick: {
-              format: "%b %Y",
-            }
-          },
-          rotated: true
         },
         tooltip: {
           show: false
@@ -8513,28 +8488,13 @@
 
       mlaidchart = c3.generate({
         data: {
-          x: "t",
-          stack: {
-            normalize: true
-          },
-          columns: [t ,all.layM1, all.layM2, all.layM3, all.layM4, all.layM5, all.layM6, all.layM7, all.layM8],
-        type: 'bar',
-        groups: [
-          ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%','Over 50%' ,'Do not know']
-        ],
+          columns: [all.layM1, all.layM2, all.layM3, all.layM4, all.layM5, all.layM6, all.layM7, all.layM8],
+          type: 'donut',
+          // labels: true,
           order: null // stack order by data definition.
         },
         color: {
           pattern: [color7[0], color7[1], color7[2], color7[3], color7[4], color7[5], color7[6], 'grey']
-        },
-        axis: {
-          x: {
-            type: "timeseries",
-            tick: {
-              format: "%b %Y",
-            }
-          },
-          rotated: true
         },
         tooltip: {
           show: false
@@ -8693,7 +8653,7 @@
         bindto: "#employ-chart"
       });
 
-      // $("#supply-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g > text").hide();
+
 
       // $("#all").on("click", function() {
       //   allCounts(all);
