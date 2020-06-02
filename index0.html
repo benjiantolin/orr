@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="authors" content="Benji Antolin">
+  <title>ORR Survey Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+  <link href="css/c3.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/simplebar.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* {
+box-sizing: border-box;
+} */
+  </style>
+  <!-- <link rel="icon" href="img/favicon.ico" type="image/x-icon"> -->
+  <script src="https://kit.fontawesome.com/cfe8b4e9f5.js" crossorigin="anonymous"></script>
+  <script src="js/d3.js"></script>
+  <script src="js/c3.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script src="js/chroma.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/simplebar.min.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="loader"></div>
+    <div id="info" data-simplebar data-simplebar-auto-hide="true">
+
+      <div id="deck-5" class="card-deck counts">
+        <div class="card">
+          <div id="title2">
+            <div class="row">
+              <div class="column">
+                <a href="https://recreationroundtable.org/" target="_blank"><img src="img\ORR.png"></a>
+              </div>
+              <div class="column">
+                <a href="https://orei.oregonstate.edu/" target="_blank"><img src="img\OSU.png"></a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="blurb" class="card-deck counts">
+        <div class="card blurb">
+          <i class="fas fa-chart-line"></i>
+          <p>
+            Just a few short months ago outdoor recreation was growing faster than almost any other industry,
+            contributed over $778 billion to the U.S. economy and employed over 5.2 million Americans. Now, 79
+            percent of outdoor businesses have had to lay off or furlough employees and 89 percent are seeing
+            decreased revenue.
+          </p>
+        </div>
+        </div>
+        <div id="blurb" class="card-deck counts">
+        <div class="card blurb">
+          <i class="fas fa-head-side-mask"></i>
+          <p>
+            According to the <a href="https://portal.census.gov/pulse/data/" target="_blank">US Census Bureau</a> which measured Covid-19 impacts on small businesses, 75 percent
+            of small business in our category are reporting large and negative effects. Overall, the we have
+            been hit 31 percent harder than the national average, making us the second most affected sector
+            in the country behind ‘food and accommodation’. - (U.S. Census Bureau Small Business Pulse Survey).
+          </p>
+        </div>
+      </div>
+      <!-- <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Number of Assosciation Employees
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Number of Member Employees
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Average Numbers of Member Businesses
+            </div>
+          </center>
+          <center>
+            <div>Text</div>
+          </center>
+        </div>
+      </div> -->
+      <div id="deck-5" class="card-deck counts">
+        <div class="card">
+          <a class="twitter-timeline" data-theme="light" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <!-- start wrapper -->
+    <div id="dashboard" data-simplebar data-simplebar-auto-hide="true">
+      <!-- <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <div id="title" style="font-size:34px"><i class="fas fa-tachometer-alt"></i> Workforce Survey Dashboard
+            <span><a href="https://www.facebook.com/OutdoorRecreationRoundtable/" target="_blank"><i class="fab fa-facebook-square"></i></a></span>
+            <span><a href="https://twitter.com/ORRoundtable" target="_blank"><i class="fab fa-twitter-square"></i></a></span>
+            <span><a data-toggle="modal" data-target="#resourcewindow"><i class="far fa-question-circle"></i></a></span>
+            <span><a data-toggle="modal" data-target="#infowindow"><i class="nav fas fa-info-circle"></i></a></span>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div id="buttons" class="card-deck counts">
+        <div class="card">
+          <center>
+            <i class="fas fa-users"></i>
+            <div>
+                All
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            <i class="fas fa-fish"></i>
+            <div>
+            Fishing
+            </div>
+          </center>
+        </div>
+        <div class="card">
+          <center>
+            Campgrounds + Hospitality
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Hunting
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Motor Vehicle
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Snowsports
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Volunteer
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Water Sports
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Gear + Equipment
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Guides + Outfitters
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Manufacturer
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Retailer
+          </center>
+          <div></div>
+        </div>
+        <div class="card">
+          <center>
+            Service Provider
+          </center>
+          <div></div>
+        </div>
+      </div> -->
+
+      <div id="deck-one" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Has the global coronavirus pandemic disrupted your industry's supply chain and/or distribution of product?
+            </div>
+          </center>
+          <div id="supply-chart"></div>
+        </div>
+      </div>
+
+      <div id="deck-2" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">What percentage of your association's employees have been furloughed or laid off?</div>
+          </center>
+          <div id="alaid-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">What percentage of your members' employees have been furloughed or laid off?</div>
+          </center>
+          <div id="mlaid-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">How have sales and revenue changed for your association AND for your members?</div>
+          </center>
+          <div id="total-chart"></div>
+        </div>
+      </div>
+
+
+      <div id="deck-4" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">How have budgets and expenses changed for your association AND for your members?</div>
+          </center>
+          <div id="budget-chart"></div>
+        </div>
+        <div class="card">
+          <center>
+            <div class="card-title">How have employment needs changed for your association AND for your members?</div>
+          </center>
+          <div id="employ-chart"></div>
+        </div>
+      </div>
+
+      <div id="blurb" class="card-deck counts">
+        <div class="card blurb">
+          <i class="fas fa-bullhorn"></i>
+          <p>
+            Action is needed on smart policies and investments that will save
+            the outdoor recreation economy so this sector can do what it does
+            best – revitalize communities, create jobs, support healthy people,
+            improve quality of life and provide access to amazing outdoor
+            experiences for generations to come.
+          </p>
+        </div>
+        <!-- </div>
+          <div id="deck-one" class="card-deck counts"> -->
+        <div class="card blurb">
+          <i class="fas fa-search-dollar"></i>
+          <p>
+            The Great American Outdoors Act would be one of the biggest
+            catalysts for change the American outdoors has seen in half a
+            century, reinvigorating the $778 billion outdoor economy. Read
+            more about this essential funding <a href="https://recreationroundtable.org/gaoa/" target="_blank">here.</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="deck-4" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">Participating Associations</div>
+            <span>
+              <div class="memberimg">
+                <a href="https://www.americaoutdoors.org/" target="_blank"><img src="img\members\AO.png"></a>
+                <a href="https://www.horsecouncil.org/" target="_blank"><img src="img\members\AHC.jpg"></a>
+                <a href="https://amga.com/" target="_blank"><img src="img\members\AMGA.jpg"></a>
+                <a href="https://asafishing.org/" target="_blank"><img src="img\members\ASA.jpg"></a>
+                <a href="https://www.archerytrade.org/" target="_blank"><img src="img\members\ATA.png"></a>
+                <a href="https://www.arvc.org/" target="_blank"><img src="img\members\ARVC.jpg"></a>
+                <a href="https://www.dema.org/" target="_blank"><img src="img\members\DEMA.png"></a>
+                <a href="https://www.mraa.com/default.aspx" target="_blank"><img src="img\members\MRAA.png"></a>
+                <a href="https://www.mic.org/#/" target="_blank"><img src="img\members\MIC.png"></a>
+                <a href="http://nfra.org/" target="_blank"><img src="img\members\NFRA.jpg"></a>
+                <a href="https://www.nmma.org/" target="_blank"><img src="img\members\NMMA.jpg"></a>
+                <a href="http://www.parkpartners.org/" target="_blank"><img src="img\members\NHPA.png"></a>
+                <a href="https://peopleforbikes.org/" target="_blank"><img src="img\members\PFB.jpg"></a>
+                <a href="https://www.rvda.org/" target="_blank"><img src="img\members\RVDA.png"></a>
+                <a href="https://www.rvia.org/" target="_blank"><img src="img\members\RVIA.jpg"></a>
+                <a href="https://snowsports.org/" target="_blank"><img src="img\members\SIA.jpg"></a>
+                <a href="http://www.snowmobile.org/" target="_blank"><img src="img\members\ISMA.png"></a>
+                <a href="https://www.sema.org/" target="_blank"><img src="img\members\SEMA.png"></a>
+                <a href="https://www.sfia.org/" target="_blank"><img src="img\members\SFIA.jpg"></a>
+                <a href="https://corpsnetwork.org/" target="_blank"><img src="img\members\TCN.png"></a>
+              </div>
+            </span>
+          </center>
+        </div>
+      </div>
+      <div id="disclaimer" class="card-deck counts">
+        <div class="card">
+          <center>
+            <div class="card-title">
+              Data Disclaimer
+            </div>
+          </center>
+          <p>
+            *This interactive web dashboard enables users to track the Outdoor Recreation Roundtable (ORR)
+            workforce survey.The supporting dataset is collected monthly and uploaded into this web application.
+            The data displayed is reflective of the answers provided by the participating associations.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Wrapper -->
+
+  </main>
+  <div id="infowindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Info</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>
+              This interactive web dashboard enables users to track the Outdoor Recreation Roundtable workforce survey.The supporting
+              dataset is collected from Qualtrics and then plotted onto this web application.
+            </p>
+
+            <h5>Update Procedure</h5>
+            To be determined...
+            <p>
+              * If you have any questions or concerns, please contact <a href="mailto:benjiantolin@gmail.com">Benji Antolin</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="resourcewindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Title</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p><a href="" target="_blank">Item</a></p>
+            <p><a href="" target="_blank">Item</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="hospwindow" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:1250px!important">
+      <div class="modal-content">
+        <div class="modal-header">
+          <strong class="modal-title" id="exampleModalLongTitle">Hospitalizations</strong>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="demo" class="carousel " data-ride="carousel">
+            <p>* Hospitalization (ever hospitalized) if available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <script>
+    $(window).ready(function() {
+      $('.loader').fadeOut("slow");
+    });
+
+    // $("#date").text("Last update: 4/1/2020");
+
+    var chart, agechart;
+
+    var color4 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(4);
+    var color5 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(5);
+    var color6 = chroma.scale(['#5c8e53', '#2a4c7e']).mode('lch').colors(6);
+
+    Promise.all([
+      d3.csv('assets/salesAll.csv'),
+      d3.csv('assets/supply.csv'),
+      d3.csv('assets/alaid.csv'),
+      d3.csv('assets/employAll.csv'),
+      d3.csv('assets/budgetAll.csv'),
+      d3.csv('assets/mlaid.csv'),
+      // d3.json("assets/virusWashingtonMin.geojson")
+    ]).then(function(datasets) {
+
+
+      // datasets[2].forEach(function(d) {
+      //   L.marker([parseFloat(d.lat), parseFloat(d.lng)]).bindPopup(d.name + "&nbsp;&nbsp;(<a target='_blank' href='https://translate.google.com/#view=home&op=translate&sl=zh-CN&tl=en&text=" + d.name + "'>Translate to English</a>)").addTo(
+      //     communities);
+      // })
+      //
+      //
+      // datasets[4].forEach(function(d) {
+      //   //console.log(d.id)
+      //   L.marker([parseFloat(d.lat), parseFloat(d.lng)]).bindPopup("<b>" + d.no + "</b> <p>" + d.note + " identified on " + d.date + ", &nbsp;" + d.reference + ".</p>").addTo(
+      //     cases);
+      // })
+
+
+
+
+      // //totalCases
+      // function tc(county) {
+      //   if (county == undefined) {
+      //     county = 0
+      //   } else {
+      //     county = +county.split("-")[0];
+      //   }
+      //   return county;
+      // }
+      //
+      //
+      // //totalDeath
+      // function td(county) {
+      //   if (county.split("-")[1] == undefined) {
+      //     county = 0
+      //   } else {
+      //     county = +county.split("-")[1];
+      //   }
+      //   return county;
+      // }
+      //
+
+      var field = ["field"];
+      var more = ["Down 75% or more"];
+      var fifty = ["Down 50% to 74%"];
+      var twentysix = ["Down 26% to 49%"];
+      var teen = ["Down 11% to 25%"];
+      var ten = ["Down 10% or less"];
+      var flat = ["Flat or up"];
+      var dnk = ["Do not know"];
+
+      datasets[0].forEach(function(d) {
+        field.push(+d["field"])
+        more.push(+d["Down 75% or more"])
+        fifty.push(+d["Down 50% to 74%"])
+        twentysix.push(+d["Down 26% to 49%"])
+        teen.push(+d["Down 11% to 25%"])
+        ten.push(+d["Down 10% or less"])
+        flat.push(+d["Flat or up"])
+        dnk.push(+d["Do not know"])
+      });
+
+      chart = c3.generate({
+        data: {
+          stack: {
+            normalize: true
+          },
+          columns: [flat, ten, teen, twentysix, fifty, more, dnk],
+          type: 'bar',
+          // labels: true,
+          groups: [
+            ['Flat or up', 'Down 10% or less', 'Down 11% to 25%', 'Down 26% to 49%', 'Down 50% to 74%', 'Down 75% or more', 'Do not know']
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#total-chart"
+      });
+
+
+      var field = ["field"];
+      var same = ["Same or similar"];
+      var slightdec = ["Budget tightened, expenses slightly reduced"];
+      var sigdec = ["Budget tightened, expenses significantly reduced"];
+      var tightinc = ["Budget tightened, expenses increased"];
+      var incinc = ["Both increased"];
+      var dnk = ["Do not know"];
+
+      datasets[4].forEach(function(d) {
+        field.push(+d["field"])
+        same.push(+d["Budget and expenses are the same or similar"])
+        slightdec.push(+d["Budget has tightened and expenses reduced slightly"])
+        sigdec.push(+d["Budget tightened and expenses reduced significantly"])
+        tightinc.push(+d["Budget tightened and expenses increased"])
+        incinc.push(+d["Budget increased and expenses increased"])
+        dnk.push(+d["Do not know"])
+      });
+
+      chart = c3.generate({
+
+        data: {
+          stack: {
+            normalize: true
+          },
+          columns: [same, slightdec, sigdec, tightinc, incinc, dnk],
+          type: 'bar',
+          // labels: true,
+          groups: [
+            ['Same or similar', 'Budget tightened, expenses slightly reduced', 'Budget tightened, expenses significantly reduced', 'Budget tightened, expenses increased',
+              'Both increased', 'Do not know'
+            ]
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color5[0], color5[1], color5[2], color5[3], color5[4], 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#budget-chart"
+      });
+      // color: {
+      //   pattern: ['#b5573a', '#4769a1']
+      // },
+
+
+      // x = Object.keys(stop).slice(0, 9);
+      // x.reverse();
+      // x.push("x");
+      // x.reverse();
+      //
+      // y = Object.values(stop).slice(0, 9);
+      // y.reverse();
+      // y.push("Confirmed Cases");
+      // y.reverse();
+
+      // Current Age Group Bar Chart
+
+      var field = ["field"];
+      var noChange = ["No change"];
+      var hiring = ["We are hiring"];
+      var furlo = ["Temporary furloughs"];
+      var laidoff = ["Laying off employees"];
+      var closed = ["Closed doors, laid off most or all staff"];
+      var dnk = ["Do not know"];
+
+      datasets[3].forEach(function(d) {
+        field.push(+d["field"])
+        noChange.push(+d["Employment needs have not changed"])
+        hiring.push(+d["More employees needed - we are hiring"])
+        furlo.push(+d["Less work so we have temporarily furloughed employees"])
+        laidoff.push(+d["Less work so we have laid off employees"])
+        closed.push(+d["We have closed our doors and laid off most or all staff"])
+        dnk.push(+d["Do not know"])
+      });
+
+      var empchart = c3.generate({
+        data: {
+          stack: {
+            normalize: true
+          },
+          columns: [hiring, noChange, furlo, laidoff, closed, dnk],
+          type: 'bar',
+          // labels: true,
+          groups: [
+            ['No change', 'We are hiring', 'Temporary furloughs', 'Laying off employees',
+              'Closed doors, laid off most or all staff', 'Do not know'
+            ]
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color5[0], color5[1], color5[2], color5[3], color5[4], 'grey']
+        },
+        axis: {
+          x: {
+            type: "category",
+            categories: ['compared to last month? (members)', 'compared to 1 year ago? (members)', 'compared to last month? (association)', 'compared to 1 year ago? (association)']
+          },
+          rotated: true
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#employ-chart"
+      });
+
+      // Aggregate Proportion of Hospitilizations Pie Chart
+
+      var notLaid = ["None"];
+      var ten = ["1% to 10%"];
+      var twenty = ["11% to 20%"];
+      var thirty = ["21% to 30%"];
+      var forty = ["31% to 40%"];
+      var fifty = ["41% to 50%"];
+      var over = ["Over 50%"];
+      var na = ["Do not know"];
+
+      datasets[2].forEach(function(d) {
+        notLaid.push(+d["Haven't furloughed or laid off employees"])
+        ten.push(+d["1% to 10%"])
+        twenty.push(+d["11% to 20%"])
+        thirty.push(+d["21% to 30%"])
+        forty.push(+d["31% to 40%"])
+        fifty.push(+d["41% to 50%"])
+        over.push(+d["Over 50%"])
+        na.push(+d["Do not know"])
+      });
+
+      alaidchart = c3.generate({
+        // size: {
+        //   height: 280,
+        //   width: 440
+        // },
+        data: {
+          columns: [notLaid, ten, twenty, thirty, forty, fifty, na],
+          type: 'donut',
+          // labels: true,
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#alaid-chart"
+      });
+
+      var notLaid = ["None"];
+      var ten = ["1% to 10%"];
+      var twenty = ["11% to 20%"];
+      var thirty = ["21% to 30%"];
+      var forty = ["31% to 40%"];
+      var fifty = ["41% to 50%"];
+      var over = ["Over 50%"];
+      var na = ["Do not know"];
+
+      datasets[5].forEach(function(d) {
+        notLaid.push(+d["Haven't furloughed or laid off employees"])
+        ten.push(+d["1% to 10%"])
+        twenty.push(+d["11% to 20%"])
+        thirty.push(+d["21% to 30%"])
+        forty.push(+d["31% to 40%"])
+        fifty.push(+d["41% to 50%"])
+        over.push(+d["Over 50%"])
+        na.push(+d["Do not know"])
+      });
+
+      alaidchart = c3.generate({
+        // size: {
+        //   height: 280,
+        //   width: 440
+        // },
+        data: {
+          columns: [notLaid, ten, twenty, thirty, forty, fifty, na],
+          type: 'donut',
+          // labels: true,
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color6[0], color6[1], color6[2], color6[3], color6[4], color6[5], 'grey']
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#mlaid-chart"
+      });
+
+      // Aggregate Proportion of Hospitilizations Pie Chart
+      var ass = ["Count"];
+      var y = ["Yes, significantly"];
+      var yb = ["Yes, but not significantly"];
+      var nb = ["No, but future changes possible"];
+      var n = ["No, supply chain/distribution are unchanged"];
+      datasets[1].forEach(function(d) {
+        ass.push(+d["Count"])
+        y.push(+d["Yes, significantly"])
+        yb.push(+d["Yes, but not significantly"])
+        nb.push(+d["No, but continued slowdown in the economy could change that"])
+        n.push(+d["No, our supply chain and distribution are secure and unchanged"])
+      });
+
+
+      supplychart = c3.generate({
+        size: {
+          height: 185,
+        },
+        data: {
+          stack: {
+            normalize: true
+          },
+          columns: [n, nb, yb, y],
+          type: 'bar',
+          // labels: true,
+          groups: [
+            ['Yes, significantly', 'Yes, but not significantly', 'No, but future changes possible', 'No, supply chain/distribution are unchanged']
+          ],
+          order: null // stack order by data definition.
+        },
+        color: {
+          pattern: [color4[0], color4[1], color4[2], color4[3]]
+        },
+        axis: {
+          x: {
+            type: "category",
+            // categories: ['Female', 'Male', 'NA']
+          },
+          rotated: true
+        },
+        tooltip: {
+          show: false
+        },
+        bindto: "#supply-chart"
+      });
+$("#supply-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g > text").hide();
+    });
+
+    /////////////////////////
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140689399-7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140689399-7');
+  </script>
+
+</body>
+
+</html>

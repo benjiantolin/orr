@@ -46,7 +46,7 @@ button .card {
 
 #buttons .card {
   font-weight: bold;
-  font-size: 74%;
+  font-size: 70%;
 }
 
 .icons {
@@ -150,22 +150,21 @@ span {
 }
 
 #info a {
-  color: white;
+  color: #5c8e53;
 }
 
 #dashboard a {
-  font-size: 30px;
-  color: black;
+  color: #5c8e53;
 }
 
 #info a:hover {
-  color: white;
-  opacity: 0.3;
+  color: #2a4c7e;
+  opacity: 0.7;
 }
 
 #dashboard a:hover {
-  color: black;
-  opacity: 0.3;
+  color: #2a4c7e;
+  opacity: 0.7;
 }
 
 #date {
@@ -263,7 +262,32 @@ p {
   margin: 5px 5px 5px 5px;
 }
 
-#disclaimer p{
+#disclaimer p {
   font-size: 12px;
   /* text-align: center; */
+}
+
+#blurb i {
+  text-align: center;
+  padding-top: 5%;
+}
+
+#blurb p {
+  padding: 5% 10% 10% 10%;
+  font-weight: 600;
+}
+
+#info #blurb i {
+  text-align: center;
+  padding-top: 5%;
+}
+
+#info #blurb p {
+  padding: 5% 5% 5% 5%;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+#blurb a {
+  /* font-weight: 0; */
 }
