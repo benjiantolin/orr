@@ -49,6 +49,10 @@ button .card {
   font-size: 60%;
 }
 
+.c3-chart-bars {
+stroke: white;
+  color: white;
+}
 
 .icons {
   justify-content: center;

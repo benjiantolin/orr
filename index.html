@@ -4257,7 +4257,7 @@
         });
         $(".sum1").text(t1);
         $(".sum2").text(t2);
-        $(".sum3").text("N/A");
+        $(".sum3").text(t3);
         $("#deck-one > div:nth-child(1) > center > p > span").digits();
         $("#deck-one > div:nth-child(2) > center > p > span").digits();
         $("#deck-one > div:nth-child(3) > center > p > span").digits();
@@ -8440,10 +8440,11 @@
           height: 185,
         },
         data: {
+            x: "t",
           stack: {
             normalize: true
           },
-          columns: [all.sp1, all.sp2, all.sp3, all.sp4, all.sp5],
+          columns: [t,all.sp1, all.sp2, all.sp3, all.sp4, all.sp5],
           type: 'bar',
           // labels: true,
           groups: [
@@ -8456,8 +8457,10 @@
         },
         axis: {
           x: {
-            show: false,
-            // categories: ['Female', 'Male', 'NA']
+            type: "timeseries",
+            tick: {
+              format: "%b %Y",
+            }
           },
           rotated: true
         },
@@ -8650,7 +8653,7 @@
         bindto: "#employ-chart"
       });
 
-      $("#supply-chart > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g > text").hide();
+
 
       // $("#all").on("click", function() {
       //   allCounts(all);
