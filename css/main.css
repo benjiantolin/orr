@@ -23,6 +23,10 @@ div#footer>div {
   margin-bottom: 10px
 }
 
+.c3-legend-item{
+  font-size: 12px;
+}
+
 button {
   background: #2a4c7e;
   color: #2a4c7e;
