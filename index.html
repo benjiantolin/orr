@@ -30,7 +30,7 @@
     <div class="loader"></div>
     <div id="info" data-simplebar data-simplebar-auto-hide="true">
 
-      <div id="deck-5" class="card-deck counts">
+      <div id="title deck" class="card-deck counts">
         <div class="card">
           <div id="title2">
             <div class="row">
@@ -83,7 +83,7 @@
 
         </div>
       </div> -->
-      <div id="deck-5" class="card-deck counts">
+      <div id="twitter" class="card-deck counts">
         <div class="card">
           <a class="twitter-timeline" data-theme="light" href="https://twitter.com/ORRoundtable?ref_src=twsrc%5Etfw">Tweets by ORRoundtable</a>
           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -107,7 +107,26 @@
           </div>
         </div>
       </div> -->
-
+      <!-- <div id="blurb" class="card-deck counts">
+        <div class="card blurb">
+          <i class="fas fa-chart-line"></i>
+          <p>
+            Just a few short months ago outdoor recreation was growing faster than almost any other industry,
+            contributed over $778 billion to the U.S. economy and employed over 5.2 million Americans. Now, 79
+            percent of outdoor businesses have had to lay off or furlough employees and 89 percent are seeing
+            decreased revenue.
+          </p>
+        </div>
+        <div class="card blurb">
+          <i class="fas fa-head-side-mask"></i>
+          <p>
+            According to the <a href="https://portal.census.gov/pulse/data/" target="_blank">US Census Bureau</a> which measured Covid-19 impacts on small businesses, 75 percent
+            of small business in our category are reporting large and negative effects. Overall, we have
+            been hit 31 percent harder than the national average, making us the second most affected sector
+            in the country behind ‘food and accommodation’. - (U.S. Census Bureau Small Business Pulse Survey).
+          </p>
+        </div>
+      </div> -->
       <div id="buttons" class="card-deck counts">
         <button id="all" class="card icons">
           <center>
@@ -8453,7 +8472,7 @@
           stack: {
             normalize: true
           },
-          columns: [t,all.sp1,all.sp2, all.sp3, all.sp4, all.sp5],
+          columns: [t, all.sp1, all.sp2, all.sp3, all.sp4, all.sp5],
           type: 'bar',
           // labels: true,
           groups: [
@@ -8474,7 +8493,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#supply-chart"
       });
@@ -8489,7 +8515,7 @@
           columns: [t, all.layA1, all.layA2, all.layA3, all.layA4, all.layA5, all.layA6, all.layA7, all.layA8],
           type: 'bar',
           groups: [
-            ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%','Over 50%' ,'Do not know']
+            ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%', 'Over 50%', 'Do not know']
           ],
           order: null // stack order by data definition.
         },
@@ -8506,7 +8532,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#alaid-chart"
       });
@@ -8517,11 +8550,11 @@
           stack: {
             normalize: true
           },
-          columns: [t ,all.layM1, all.layM2, all.layM3, all.layM4, all.layM5, all.layM6, all.layM7, all.layM8],
-        type: 'bar',
-        groups: [
-          ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%','Over 50%' ,'Do not know']
-        ],
+          columns: [t, all.layM1, all.layM2, all.layM3, all.layM4, all.layM5, all.layM6, all.layM7, all.layM8],
+          type: 'bar',
+          groups: [
+            ['None', '1% to 10%', '11% to 20%', '21% to 30%', '31% to 40%', '41% to 50%', 'Over 50%', 'Do not know']
+          ],
           order: null // stack order by data definition.
         },
         color: {
@@ -8537,7 +8570,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#mlaid-chart"
       });
@@ -8586,7 +8626,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#total-chart"
       });
@@ -8639,7 +8686,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#budget-chart"
       });
@@ -8688,7 +8742,14 @@
           rotated: true
         },
         tooltip: {
-          show: false
+          format: {
+            value: function(value, ratio, id) {
+              var format = id === 'data1' ? d3.format(',') : d3.format('.2%');
+              return format(ratio);
+            }
+          },
+          show: true,
+          grouped: false,
         },
         bindto: "#employ-chart"
       });
